@@ -14,10 +14,10 @@ ids<-function(c_node,c_depth,max_depth,visited,path){
   if(c_node==goal){
     path<-c(path,c_node)
     print(path)
-    return(TRUE)
+    return(list(TRUE,visited))
   }
   if(c_depth==max_depth){
-    return(FALSE)
+    return(list(FALSE,visited))
   }
   path<-c(path,c_node)
   visited[c_node]=c_depth
@@ -30,19 +30,21 @@ ids<-function(c_node,c_depth,max_depth,visited,path){
       if(visited[next_node]<=next_depth)
       next
     }
-    flag<-ids(next_node,next_depth,max_depth,visited,path)
+    values<-ids(next_node,next_depth,max_depth,visited,path)
+    flag<-values[[1]][1]
+    visited<-values[[2]]
     if(flag){
-      return(TRUE)
+      return(list(TRUE,visited))
     }
   }
-  return(FALSE)
+  return(list(FALSE,visited))
 }
 
 max_depth<-10
 flag<-FALSE
 for(i in 1:max_depth){
-  flag<-ids(initial,1,i,c(),c())
-  if(flag){
+  values<-ids(initial,1,i,c(),c())
+  if(values[[1]][1]){
     print("depth is")
     print(i)
     break
