@@ -46,12 +46,12 @@ for(iteration in 1:no_of_iteration){
     }
     
   }
-  gbest_position<-which.max(particle_fitness)
+  gbest_position<-which.max(particle_best_fitness)
   new_velocity<-list()
   for(index in 1:no_of_particles){
     r1<-runif(1)
     r2<-runif(1)
-    velocity[[index]]<-velocity[[index]]*w+c1*r1*(particle_best[[index]]-particles[[index]])+c2*r2*(particles[[gbest_position]]-particles[[index]])
+    velocity[[index]]<-velocity[[index]]*w+c1*r1*(particle_best[[index]]-particles[[index]])+c2*r2*(particle_best[[gbest_position]]-particles[[index]])
     particles[[index]]<-particles[[index]]+velocity[[index]]
   }
 }
