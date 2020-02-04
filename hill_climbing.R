@@ -36,11 +36,3 @@ if(flag){
   print(path)
 }
 
-ordered_list<-order(as.numeric(node_heuristic))
-node_heuristic<-node_heuristic[ordered_list]
-print(node_heuristic)
-typeof(node_heuristic)
-
-#print(node_heuristic)
-#node_heuristic<-node_heuristic[names(node_heuristic)!='A']
-#print(node_heuristic)
